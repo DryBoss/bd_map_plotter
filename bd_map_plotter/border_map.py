@@ -18,8 +18,7 @@ class BorderMap:
 
         self.data = gpd.read_file(json_path)
 
-    def plot(self, title="Bangladesh", edgecolor="red", color="blue"):
-        """Plots the Bangladesh map with customizable colors."""
+    def plot(self, title="Bangladesh", edgecolor="black", color="lightcyan"):
         fig, ax = plt.subplots(figsize=(5, 5))
         self.data.plot(ax=ax, edgecolor=edgecolor, color=color, linewidth=2)
         ax.set_title(title)
