@@ -1,15 +1,26 @@
-# Dependency import
+import os
+
 try:
     import geopandas as gpd
     import matplotlib.pyplot as plt
-    import matplotlib.colors as mcolors
 except ImportError as e:
-    print("Missing dependencies! Please install them using:\n  pip install geopandas matplotlib")
+    print("Missing dependencies! Install with:\n  pip install geopandas matplotlib")
     raise e
 
-bangladesh = gpd.read_file("https://raw.githubusercontent.com/DryBoss/map-visualization/main/datas/whole_bangladesh_outline.json")
+class BorderMap:
+    def __init__(self):
+        """Initialize and load map data from a local file."""
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        json_path = os.path.join(base_dir, "data", "border_map.json")
 
-fig,ax = plt.subplots(figsize=(5,5))
-ax = bangladesh.plot(ax=ax, edgecolor='red', color='blue', linewidth=2)
-ax.set_title('Bangladesh')
-plt.show()
+        if not os.path.exists(json_path):
+            raise FileNotFoundError(f"Map data file not found: {json_path}")
+
+        self.data = gpd.read_file(json_path)
+
+    def plot(self, title="Bangladesh", edgecolor="red", color="blue"):
+        """Plots the Bangladesh map with customizable colors."""
+        fig, ax = plt.subplots(figsize=(5, 5))
+        self.data.plot(ax=ax, edgecolor=edgecolor, color=color, linewidth=2)
+        ax.set_title(title)
+        plt.show()
