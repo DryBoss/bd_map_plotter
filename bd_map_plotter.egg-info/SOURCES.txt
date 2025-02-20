@@ -1,0 +1,15 @@
+MANIFEST.in
+README.md
+setup.py
+bd_map_plotter/__init__.py
+bd_map_plotter/border_map.py
+bd_map_plotter.egg-info/PKG-INFO
+bd_map_plotter.egg-info/SOURCES.txt
+bd_map_plotter.egg-info/dependency_links.txt
+bd_map_plotter.egg-info/requires.txt
+bd_map_plotter.egg-info/top_level.txt
+bd_map_plotter/data/border_map.json
+bd_map_plotter/data/districts_map.json
+bd_map_plotter/data/divisions_map.json
+bd_map_plotter/data/subdistricts_map.json
+bd_map_plotter/data/union_map.json
