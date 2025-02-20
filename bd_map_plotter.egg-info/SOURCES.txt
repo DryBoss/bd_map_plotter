@@ -3,6 +3,7 @@ README.md
 setup.py
 bd_map_plotter/__init__.py
 bd_map_plotter/border_map.py
+bd_map_plotter/divisions_map.py
 bd_map_plotter.egg-info/PKG-INFO
 bd_map_plotter.egg-info/SOURCES.txt
 bd_map_plotter.egg-info/dependency_links.txt

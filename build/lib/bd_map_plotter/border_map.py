@@ -18,8 +18,8 @@ class BorderMap:
 
         self.data = gpd.read_file(json_path)
 
-    def plot(self, title="Bangladesh", edgecolor="black", color="lightcyan"):
-        fig, ax = plt.subplots(figsize=(5, 5))
-        self.data.plot(ax=ax, edgecolor=edgecolor, color=color, linewidth=2)
+    def plot(self, figureSize=(5,5),title="Bangladesh", edgeColor="black", fillColor="lightcyan", lineWidth=2):
+        fig, ax = plt.subplots(figsize=figureSize)
+        self.data.plot(ax=ax, edgecolor=edgeColor, color=fillColor, linewidth=lineWidth)
         ax.set_title(title)
         plt.show()
