@@ -18,8 +18,19 @@ class BorderMap:
 
         self.data = gpd.read_file(json_path)
 
-    def plot(self, figureSize=(5,5),title="Bangladesh", edgeColor="black", fillColor="lightcyan", lineWidth=2):
+    def draw(self, figureSize=(5,5), title="Bangladesh", edgeColor="black", fillColor="lightcyan", lineWidth=2):
         fig, ax = plt.subplots(figsize=figureSize)
         self.data.plot(ax=ax, edgecolor=edgeColor, color=fillColor, linewidth=lineWidth)
         ax.set_title(title)
-        plt.show()
+        plt.draw()  # You could use plt.show() here, but plt.draw() updates the plot if necessary.
+
+    def show(self):  # Added self parameter
+        plt.show()  # Use plt.show() to display the plot
+
+# Run the code
+if __name__ == "__main__":
+    border_map = BorderMap()
+    border_map.draw()
+    border_map.show()
+    border_map.draw(fillColor='red')
+    border_map.show()
