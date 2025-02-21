@@ -1,6 +1,7 @@
 import os
 
 try:
+    import numpy as np
     import geopandas as gpd
     import matplotlib.pyplot as plt
 except ImportError as e:
@@ -20,17 +21,34 @@ class BorderMap:
 
     def draw(self, figureSize=(5,5), title="Bangladesh", edgeColor="black", fillColor="lightcyan", lineWidth=2):
         fig, ax = plt.subplots(figsize=figureSize)
+        self.ax = ax 
         self.data.plot(ax=ax, edgecolor=edgeColor, color=fillColor, linewidth=lineWidth)
         ax.set_title(title)
-        plt.draw()  # You could use plt.show() here, but plt.draw() updates the plot if necessary.
+        plt.draw()
 
-    def show(self):  # Added self parameter
-        plt.show()  # Use plt.show() to display the plot
+    def markPoint(self, latitudeLongitude, label=False, color="red", size=10, marker="o"):
+        if isinstance(latitudeLongitude[0], (float, int)):
+                latitudeLongitude = [latitudeLongitude]
+        
+        for latlon in latitudeLongitude:
+            # Handle cases where latlon might be a tuple/list or just a single pair
+            if isinstance(latlon, (list, tuple)) and len(latlon) == 2:
+                lat, lon = latlon
+                self.ax.scatter(lon, lat, color=color, s=size, label=label if label else f"({lat}, {lon})")
+            else:
+                raise ValueError("Each item in latitudeLongitude should be a (lat, lon) pair.")
+        
+        self.ax.legend()
+        plt.draw()
+
+
+
+    def show(self):
+        plt.show()
 
 # Run the code
 if __name__ == "__main__":
     border_map = BorderMap()
     border_map.draw()
-    border_map.show()
-    border_map.draw(fillColor='red')
+    border_map.markPoint((22.342218, 91.836653))
     border_map.show()
